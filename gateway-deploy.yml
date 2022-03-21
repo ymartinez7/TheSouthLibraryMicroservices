@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: gateway-deploy
+ labels:
+  name: gateway-deploy
+  app: microservice
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: gateway
+   type: microservice
+ template:
+  metadata:
+   name: gateway-pod
+   labels:
+    app: gateway
+    type: microservice
+  spec:
+   containers:
+    - name: gateway-app
+      image: ymartinez7/thesouthllibrarygatewayapi:latest
+      ports:
+       - containerPort: 80
+

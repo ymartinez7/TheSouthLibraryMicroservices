@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: microservice-identity-deploy
+ labels:
+  name: microservice-identity-deploy
+  app: microservice
+spec:
+ replicas: 2
+ selector:
+  matchLabels:
+   app: microservice-identity
+   type: microservice
+ template:
+  metadata:
+   name: microservice-identity-pod
+   labels:
+    app: microservice-identity
+    type: microservice
+  spec:
+   containers:
+    - name: microservice-identity-app
+      image: ymartinez7/thesouthllibraryidentityapi:latest
+      ports:
+       - containerPort: 80
+      env: 
+       - name: ConnectionStrings__ConexionDB
+         value: Server=mssql-service;Database=Seguridad;User=sa;Password=y18010611m

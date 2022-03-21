@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: microservice-identity-service
+ labels:
+  name: microservice-identity-service
+  app: microserice
+spec:
+ type: ClusterIP
+ ports:
+  - port: 80
+    targetPort: 80
+ selector:
+  app: microservice-identity
+  type: microservice

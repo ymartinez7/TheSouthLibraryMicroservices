@@ -1,0 +1,30 @@
+apiVersiob: apps/v1
+kind: Deployment
+metadata:
+ name: mssql-deploy
+ labels:
+  name: mssql-deply
+  app: microservice.identity
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: microservice-identity
+   name: mssql-pod
+ template:
+  metadata:
+   name: mssqlserver-pod
+   labels:
+    app: microservice-identity
+    name: mssql-pod
+  spec:
+   containers:
+    - name: mssql
+      image: mcr.microsoft.com/mssql/server
+      ports:
+       - containerPorts: 1433
+      env:
+      - name: ACCEPT_EULA
+        value: "Y"
+      - name: SA_PASSWORD
+        value: "y18010611m"

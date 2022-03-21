@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: microservice-book-deploy
+ labels:
+  name: microservice-book-deploy
+  app: microservice
+spec:
+ replicas: 2
+ selector:
+  matchLabels:
+   app: microservice-book
+   type: microservice
+ template:
+  metadata:
+   name: microservice-book-pod
+   labels:
+    app: microservice-book
+    type: microservice
+  spec:
+   containers:
+    - name: microservice-book-app
+      image: ymartinez7/thesouthllibrarybookapi:latest
+      ports:
+       - containerPort: 80
+      env: 
+       - name: MongoDb__ConnectionString
+         value: mongodb://ymartinez7:y18010611m@mongo-service:27017
+

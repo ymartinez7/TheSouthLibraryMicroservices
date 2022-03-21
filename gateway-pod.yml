@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: gateway-pod
+ labels:
+  app: gateway
+  type: microservice
+spec:
+ containers:
+  - name: gateway-app
+    image: ymartinez7/thesouthllibrarygatewayapi:latest
+    ports:
+     - containerPort: 80
