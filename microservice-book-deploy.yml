@@ -20,7 +20,7 @@ spec:
   spec:
    containers:
     - name: microservice-book-app
-      image: ymartinez7/thesouthllibrarybookapi:latest
+      image: ymartinez7/thesouthllibrarybookapi:v2.#{Build.BuildId}#
       ports:
        - containerPort: 80
       env: 

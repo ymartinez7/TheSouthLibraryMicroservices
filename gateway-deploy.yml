@@ -20,7 +20,7 @@ spec:
   spec:
    containers:
     - name: gateway-app
-      image: ymartinez7/thesouthllibrarygatewayapi:latest
+      image: ymartinez7/thesouthllibrarygatewayapi:v2.#{Build.BuildId}#
       ports:
        - containerPort: 80
 
