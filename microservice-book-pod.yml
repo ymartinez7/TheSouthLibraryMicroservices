@@ -7,10 +7,10 @@ metadata:
   type: microservice
 spec:
  containers:
- - name: microservice-book-app
-   image: ymartinez7/thesouthllibrarybookapi:latest
-   ports:
-    - containerPort: 80
-   env: 
-    - name: MongoDb__ConnectionString
-      value: mongodb://ymartinez7:y18010611m@mongo-service:27017
+  - name: microservice-book-app
+    image: ymartinez7/thesouthllibrarybookapi:latest
+    ports:
+     - containerPort: 80
+    env: 
+     - name: MongoDb__ConnectionString
+       value: mongodb://ymartinez7:y18010611m@mongo-service:27017

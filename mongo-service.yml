@@ -5,11 +5,11 @@ metadata:
  labels:
   name: mongo-service
   app: database
-spc:
- type: LoadBalancer
- ports:
+spec:
+  type: LoadBalancer
+  ports:
   - port: 27017
     targetPort: 27017
- selector:
- app: microservice-book
- name: mongo-pod
+  selector:
+   app: microservice-book
+   name: mongo-pod

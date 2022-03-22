@@ -3,31 +3,31 @@ kind: Deployment
 metadata: 
  name: mongo-deploy
  labels:
-  name: mongo-deply
+  name: mongo-deploy
   app: microservice-book
- spec:
-  replicas: 1
-  selector:
-   matchLabels:
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   name: mongo-pod
+   app: microservice-book
+ template:
+  metadata:
+   name: mongo-pod
+   labels:
+    name: mongo-pod
     app: microservice-book
-    name: mongo-pod
-  template:
-   metadata:
-    name: mongo-pod
-    labels:
-      app: microservice-book
-      name: mongo-pod
-   spec:
-    containers:
-     - name: mongodb
-       mage: mongo:4.2.12
-       command:
-       - /bin/bash
-       - -c
-       env:
-       - name: MONGO_INITDB_USERNAME
-         value: "ymartinez7"
-       - name: MONGO_INITPASSWORD
-         value: "y18010611m"	
-         ports:
-          - containerPort: 27017
+  spec:
+   containers:
+   - name: mongo
+     image: mongo:latest
+     #command:
+     #- /bin/bash
+     #- -c
+     env:
+     - name: MONGO_INITDB_ROOT_USERNAME
+       value: "ymartinez7"
+     - name: MONGO_INITDB_ROOT_PASSWORD
+       value: "y18010611m"
+     ports:
+     - containerPort: 27017

@@ -5,7 +5,7 @@ metadata:
  labels:
   name: mssql-service
   app: database
-spc:
+spec:
   type: LoadBalancer
   ports:
   - port: 1433

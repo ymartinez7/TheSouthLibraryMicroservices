@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{1EFAD94B-8F9C-4C15-ACF3-D7531665D1BD}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		microservice-book-pod.yml = microservice-book-pod.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -29,6 +28,25 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{710F4D95-4914-40B0-A9D4-276EF3A00C47}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSouthlLibrary.Gateway.Api", "ApiGateway\TheSouthlLibrary.Gateway.Api\TheSouthlLibrary.Gateway.Api.csproj", "{33D53FC9-188C-44ED-8774-216A9FA17599}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{41E0D3E3-0083-4CE9-9A1A-5E0E14DCD91B}"
+	ProjectSection(SolutionItems) = preProject
+		gateway-deploy.yml = gateway-deploy.yml
+		gateway-pod.yml = gateway-pod.yml
+		gateway-service.yml = gateway-service.yml
+		microservice-book-deploy.yml = microservice-book-deploy.yml
+		microservice-book-pod.yml = microservice-book-pod.yml
+		microservice-book-service.yml = microservice-book-service.yml
+		microservice-identity-deploy.yml = microservice-identity-deploy.yml
+		microservice-identity-pod.yml = microservice-identity-pod.yml
+		microservice-identity-service.yml = microservice-identity-service.yml
+		mongo-deploy.yml = mongo-deploy.yml
+		mongo-pod.yml = mongo-pod.yml
+		mongo-service.yml = mongo-service.yml
+		sqlserver-deploy.yml = sqlserver-deploy.yml
+		sqlserver-pod.yml = sqlserver-pod.yml
+		sqlserver-service.yml = sqlserver-service.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
