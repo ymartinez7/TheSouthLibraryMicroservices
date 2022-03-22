@@ -20,6 +20,7 @@ namespace TheSouthlLibrary.Book.Api.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
+
             _logger = logger;
 
         }
