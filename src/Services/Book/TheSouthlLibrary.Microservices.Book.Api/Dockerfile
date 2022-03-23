@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Book/TheSouthlLibrary.Book.Api/TheSouthlLibrary.Book.Api.csproj", "Book/TheSouthlLibrary.Book.Api/"]
-RUN dotnet restore "Book/TheSouthlLibrary.Book.Api/TheSouthlLibrary.Book.Api.csproj"
+COPY ["src/Services/Book/TheSouthlLibrary.Microservices.Book.Api/TheSouthlLibrary.Microservices.Book.Api.csproj", "src/Services/Book/TheSouthlLibrary.Microservices.Book.Api/"]
+RUN dotnet restore "src/Services/Book/TheSouthlLibrary.Microservices.Book.Api/TheSouthlLibrary.Microservices.Book.Api.csproj"
 COPY . .
-WORKDIR "/src/Book/TheSouthlLibrary.Book.Api"
-RUN dotnet build "TheSouthlLibrary.Book.Api.csproj" -c Release -o /app/build
+WORKDIR "/src/src/Services/Book/TheSouthlLibrary.Microservices.Book.Api"
+RUN dotnet build "TheSouthlLibrary.Microservices.Book.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TheSouthlLibrary.Book.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "TheSouthlLibrary.Microservices.Book.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TheSouthlLibrary.Book.Api.dll"]
+ENTRYPOINT ["dotnet", "TheSouthlLibrary.Microservices.Book.Api.dll"]
