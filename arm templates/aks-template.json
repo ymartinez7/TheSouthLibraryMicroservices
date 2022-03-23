@@ -1,0 +1,246 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "type": "string",
+      "metadata": {
+        "description": "El nombre del recurso de clúster administrado."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "La ubicación del recurso de AKS."
+      }
+    },
+    "dnsPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "Prefijo de DNS opcional que se usará con el FQDN del servidor de API de Kubernetes hospedado."
+      }
+    },
+    "osDiskSizeGB": {
+      "type": "int",
+      "defaultValue": 0,
+      "metadata": {
+        "description": "Tamaño de disco (en GiB) que se aprovisiona para cada uno de los nodos de grupos de agentes. Este valor oscila de 0 a 1023. Si se especifica 0, se aplica el tamaño de disco predeterminado para ese valor agentVMSize."
+      },
+      "minValue": 0,
+      "maxValue": 1023
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "defaultValue": "1.7.7",
+      "metadata": {
+        "description": "La versión de Kubernetes."
+      }
+    },
+    "networkPlugin": {
+      "type": "string",
+      "allowedValues": [
+        "azure",
+        "kubenet"
+      ],
+      "metadata": {
+        "description": "Complemento de red que se usa para crear la red Kubernetes."
+      }
+    },
+    "enableRBAC": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Marca booleana para activar y desactivar RBAC."
+      }
+    },
+    "vmssNodePool": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Marca booleana para activar y desactivar conjuntos de escalado de máquinas virtuales"
+      }
+    },
+    "windowsProfile": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Marca booleana para activar y desactivar conjuntos de escalado de máquinas virtuales"
+      }
+    },
+    "enablePrivateCluster": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Habilite el acceso de la red privada al clúster de Kubernetes."
+      }
+    },
+    "enableHttpApplicationRouting": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Marca booleana para activar y desactivar el enrutamiento de aplicaciones HTTP."
+      }
+    },
+    "enableAzurePolicy": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Marca booleana para activar y desactivar el complemento de Azure Policy."
+      }
+    },
+    "enableSecretStoreCSIDriver": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Marca booleana para activar y desactivar el controlador CSI del almacén de secretos."
+      }
+    },
+    "vnetSubnetID": {
+      "type": "string",
+      "metadata": {
+        "description": "Identificador de recurso de subred de la red virtual que se usa para la asignación de IP de los pods o nodos."
+      }
+    },
+    "serviceCidr": {
+      "type": "string",
+      "metadata": {
+        "description": "Intervalo IP de notación CIDR desde el que se van a asignar las direcciones IP del clúster del servicio."
+      }
+    },
+    "dnsServiceIP": {
+      "type": "string",
+      "metadata": {
+        "description": "Dirección IP del servidor DNS de los contenedores."
+      }
+    },
+    "dockerBridgeCidr": {
+      "type": "string",
+      "metadata": {
+        "description": "IP de notación CIDR para el puente de Docker."
+      }
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2021-07-01",
+      "dependsOn": [
+        "Microsoft.Network/virtualNetworks/TheSouthLibrary-vnet"
+      ],
+      "type": "Microsoft.ContainerService/managedClusters",
+      "location": "[parameters('location')]",
+      "name": "[parameters('resourceName')]",
+      "properties": {
+        "kubernetesVersion": "[parameters('kubernetesVersion')]",
+        "enableRBAC": "[parameters('enableRBAC')]",
+        "dnsPrefix": "[parameters('dnsPrefix')]",
+        "agentPoolProfiles": [
+          {
+            "name": "agentpool",
+            "osDiskSizeGB": "[parameters('osDiskSizeGB')]",
+            "count": 1,
+            "enableAutoScaling": false,
+            "vmSize": "Standard_B4ms",
+            "osType": "Linux",
+            "storageProfile": "ManagedDisks",
+            "type": "VirtualMachineScaleSets",
+            "mode": "System",
+            "maxPods": 110,
+            "availabilityZones": [],
+            "enableNodePublicIP": false,
+            "tags": {},
+            "vnetSubnetID": "[parameters('vnetSubnetID')]"
+          }
+        ],
+        "networkProfile": {
+          "loadBalancerSku": "standard",
+          "networkPlugin": "[parameters('networkPlugin')]",
+          "serviceCidr": "[parameters('serviceCidr')]",
+          "dnsServiceIP": "[parameters('dnsServiceIP')]",
+          "dockerBridgeCidr": "[parameters('dockerBridgeCidr')]"
+        },
+        "apiServerAccessProfile": {
+          "enablePrivateCluster": "[parameters('enablePrivateCluster')]"
+        },
+        "addonProfiles": {
+          "httpApplicationRouting": {
+            "enabled": "[parameters('enableHttpApplicationRouting')]"
+          },
+          "azurepolicy": {
+            "enabled": "[parameters('enableAzurePolicy')]"
+          },
+          "azureKeyvaultSecretsProvider": {
+            "enabled": "[parameters('enableSecretStoreCSIDriver')]"
+          }
+        }
+      },
+      "tags": {},
+      "sku": {
+        "name": "Basic",
+        "tier": "Free"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      }
+    },
+    {
+      "apiVersion": "2020-11-01",
+      "name": "TheSouthLibrary-vnet",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "westeurope",
+      "properties": {
+        "subnets": [
+          {
+            "name": "default",
+            "id": "/subscriptions/74ce5dbf-3e26-41fb-a9bc-d49266af6822/resourceGroups/TheSouthLibrary/providers/Microsoft.Network/virtualNetworks/TheSouthLibrary-vnet/subnets/default",
+            "properties": {
+              "addressPrefix": "10.240.0.0/16"
+            }
+          }
+        ],
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/8"
+          ]
+        }
+      },
+      "tags": {}
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "name": "ClusterSubnetRoleAssignmentDeployment-20220323211247",
+      "apiVersion": "2017-05-10",
+      "resourceGroup": "TheSouthLibrary",
+      "subscriptionId": "74ce5dbf-3e26-41fb-a9bc-d49266af6822",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworks/subnets/providers/roleAssignments",
+              "apiVersion": "2018-09-01-preview",
+              "name": "TheSouthLibrary-vnet/default/Microsoft.Authorization/539ec9d3-c65b-4f87-afd0-f0e16fc1f0af",
+              "properties": {
+                "roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', '4d97b98b-1d4f-4787-a291-c67834d212e7')]",
+                "principalId": "[reference(parameters('resourceName'),'2021-07-01','Full').identity.principalId]",
+                "scope": "/subscriptions/74ce5dbf-3e26-41fb-a9bc-d49266af6822/resourceGroups/TheSouthLibrary/providers/Microsoft.Network/virtualNetworks/TheSouthLibrary-vnet/subnets/default"
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "Microsoft.Network/virtualNetworks/TheSouthLibrary-vnet"
+      ]
+    }
+  ],
+  "outputs": {
+    "controlPlaneFQDN": {
+      "type": "string",
+      "value": "[reference(concat('Microsoft.ContainerService/managedClusters/', parameters('resourceName'))).fqdn]"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "value": "TheSouthLibrary-AKS-Cluster"
+    },
+    "location": {
+      "value": "westeurope"
+    },
+    "dnsPrefix": {
+      "value": "TheSouthLibrary-AKS-Cluster-dns"
+    },
+    "kubernetesVersion": {
+      "value": "1.21.9"
+    },
+    "networkPlugin": {
+      "value": "azure"
+    },
+    "enableRBAC": {
+      "value": true
+    },
+    "enablePrivateCluster": {
+      "value": false
+    },
+    "enableHttpApplicationRouting": {
+      "value": false
+    },
+    "enableAzurePolicy": {
+      "value": false
+    },
+    "enableSecretStoreCSIDriver": {
+      "value": false
+    },
+    "vmssNodePool": {
+      "value": true
+    },
+    "vnetSubnetID": {
+      "value": "/subscriptions/74ce5dbf-3e26-41fb-a9bc-d49266af6822/resourceGroups/TheSouthLibrary/providers/Microsoft.Network/virtualNetworks/TheSouthLibrary-vnet/subnets/default"
+    },
+    "serviceCidr": {
+      "value": "10.0.0.0/16"
+    },
+    "dnsServiceIP": {
+      "value": "10.0.0.10"
+    },
+    "dockerBridgeCidr": {
+      "value": "172.17.0.1/16"
+    }
+  }
+}
