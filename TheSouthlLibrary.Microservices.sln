@@ -1,0 +1,104 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3EF6239F-6CBC-45DC-B04C-5745061F0AC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{1EFAD94B-8F9C-4C15-ACF3-D7531665D1BD}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{710F4D95-4914-40B0-A9D4-276EF3A00C47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{41E0D3E3-0083-4CE9-9A1A-5E0E14DCD91B}"
+	ProjectSection(SolutionItems) = preProject
+		gateway-deploy.yml = gateway-deploy.yml
+		gateway-pod.yml = gateway-pod.yml
+		gateway-service.yml = gateway-service.yml
+		microservice-book-deploy.yml = microservice-book-deploy.yml
+		microservice-book-pod.yml = microservice-book-pod.yml
+		microservice-book-service.yml = microservice-book-service.yml
+		microservice-identity-deploy.yml = microservice-identity-deploy.yml
+		microservice-identity-pod.yml = microservice-identity-pod.yml
+		microservice-identity-service.yml = microservice-identity-service.yml
+		mongo-deploy.yml = mongo-deploy.yml
+		mongo-pod.yml = mongo-pod.yml
+		mongo-service.yml = mongo-service.yml
+		sqlserver-deploy.yml = sqlserver-deploy.yml
+		sqlserver-pod.yml = sqlserver-pod.yml
+		sqlserver-service.yml = sqlserver-service.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{830AAA54-3240-4145-B8CB-63F54F79EEED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Book", "Book", "{6E2BF78D-992F-4316-B9A6-36F78F9FE35C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{D95F2D28-503A-4D20-8A68-7B35995B088C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{129E48A7-4AAE-4356-B510-489D7D06B9C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AB558DB9-1447-43D4-8CBA-9A44A2FE8805}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0147FEA0-35C3-4D86-8C05-27361573D718}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSouthlLibrary.Microservices.Gateway.Api", "src\ApiGateway\TheSouthlLibrary.Microservices.Gateway.Api\TheSouthlLibrary.Microservices.Gateway.Api.csproj", "{A0ACDD40-9E37-486C-8574-AD23DF7F0B6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSouthlLibrary.Microservices.Book.Api", "src\Services\Book\TheSouthlLibrary.Microservices.Book.Api\TheSouthlLibrary.Microservices.Book.Api.csproj", "{ADBAD545-812E-4D02-8C00-BBA7F8E89A1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSouthlLibrary.Microservices.Book.Core", "src\Services\Book\TheSouthlLibrary.Microservices.Book.Core\TheSouthlLibrary.Microservices.Book.Core.csproj", "{252DCF31-D8DB-46A1-AE7E-D6D1D048A5C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSouthlLibrary.Microservices.Book.Infrastructure", "src\Services\Book\TheSouthlLibrary.Microservices.Book.Infrastructure\TheSouthlLibrary.Microservices.Book.Infrastructure.csproj", "{DDE28341-440F-4B41-8957-34E17CDA08E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheSouthlLibrary.Microservices.Identity.Api", "src\Services\Identity\TheSouthlLibrary.Microservices.Identity.Api\TheSouthlLibrary.Microservices.Identity.Api.csproj", "{63C7992D-9579-40AB-983B-E60DB9D2D537}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0ACDD40-9E37-486C-8574-AD23DF7F0B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0ACDD40-9E37-486C-8574-AD23DF7F0B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0ACDD40-9E37-486C-8574-AD23DF7F0B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0ACDD40-9E37-486C-8574-AD23DF7F0B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADBAD545-812E-4D02-8C00-BBA7F8E89A1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADBAD545-812E-4D02-8C00-BBA7F8E89A1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADBAD545-812E-4D02-8C00-BBA7F8E89A1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADBAD545-812E-4D02-8C00-BBA7F8E89A1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{252DCF31-D8DB-46A1-AE7E-D6D1D048A5C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{252DCF31-D8DB-46A1-AE7E-D6D1D048A5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{252DCF31-D8DB-46A1-AE7E-D6D1D048A5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{252DCF31-D8DB-46A1-AE7E-D6D1D048A5C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE28341-440F-4B41-8957-34E17CDA08E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE28341-440F-4B41-8957-34E17CDA08E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE28341-440F-4B41-8957-34E17CDA08E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE28341-440F-4B41-8957-34E17CDA08E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C7992D-9579-40AB-983B-E60DB9D2D537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C7992D-9579-40AB-983B-E60DB9D2D537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C7992D-9579-40AB-983B-E60DB9D2D537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C7992D-9579-40AB-983B-E60DB9D2D537}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{710F4D95-4914-40B0-A9D4-276EF3A00C47} = {3EF6239F-6CBC-45DC-B04C-5745061F0AC1}
+		{830AAA54-3240-4145-B8CB-63F54F79EEED} = {3EF6239F-6CBC-45DC-B04C-5745061F0AC1}
+		{6E2BF78D-992F-4316-B9A6-36F78F9FE35C} = {710F4D95-4914-40B0-A9D4-276EF3A00C47}
+		{D95F2D28-503A-4D20-8A68-7B35995B088C} = {710F4D95-4914-40B0-A9D4-276EF3A00C47}
+		{129E48A7-4AAE-4356-B510-489D7D06B9C1} = {830AAA54-3240-4145-B8CB-63F54F79EEED}
+		{AB558DB9-1447-43D4-8CBA-9A44A2FE8805} = {6E2BF78D-992F-4316-B9A6-36F78F9FE35C}
+		{0147FEA0-35C3-4D86-8C05-27361573D718} = {D95F2D28-503A-4D20-8A68-7B35995B088C}
+		{A0ACDD40-9E37-486C-8574-AD23DF7F0B6D} = {830AAA54-3240-4145-B8CB-63F54F79EEED}
+		{ADBAD545-812E-4D02-8C00-BBA7F8E89A1E} = {6E2BF78D-992F-4316-B9A6-36F78F9FE35C}
+		{252DCF31-D8DB-46A1-AE7E-D6D1D048A5C2} = {6E2BF78D-992F-4316-B9A6-36F78F9FE35C}
+		{DDE28341-440F-4B41-8957-34E17CDA08E5} = {6E2BF78D-992F-4316-B9A6-36F78F9FE35C}
+		{63C7992D-9579-40AB-983B-E60DB9D2D537} = {D95F2D28-503A-4D20-8A68-7B35995B088C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A4353C9-9BA7-482F-9D1A-678ABD9FF8BE}
+	EndGlobalSection
+EndGlobal
